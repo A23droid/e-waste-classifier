@@ -1,6 +1,6 @@
 # next-big-web-project
 WebP project
-# 📦 Project Architecture
+#  Project Architecture
 
 ## Overview
 
@@ -32,20 +32,9 @@ client/
 ├── public/
 │
 ├── src/
-│   ├── assets/        # images and icons
 │   ├── components/    # reusable UI components
-│   │   ├── layout/
-│   │   ├── hero/
-│   │   ├── upload/
-│   │   ├── prediction/
-│   │   └── ui/
-│   │
 │   ├── pages/         # route-level views
-│   ├── services/      # API communication
-│   ├── hooks/         # custom React hooks
 │   ├── router/        # application routing
-│   ├── styles/        # global styles
-│   │
 │   ├── App.jsx
 │   └── main.jsx
 │

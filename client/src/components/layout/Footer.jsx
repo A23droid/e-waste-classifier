@@ -1,4 +1,3 @@
-// Footer.jsx
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -25,7 +24,7 @@ export default function Footer() {
             <span>EcoClassify</span>
           </div>
 
-          {/* Right side */}
+          {/* Rightside */}
           <div className="flex items-center gap-6">
             {/* GitHub */}
             <a
@@ -66,7 +65,7 @@ export default function Footer() {
 
             {/* Copyright */}
             <p className="text-sm text-gray-500">
-              © {currentYear} EcoClassify
+              &copy; {currentYear} EcoClassify
             </p>
           </div>
         </div>

@@ -6,8 +6,7 @@ import Footer from "./components/layout/Footer";
 
 function App() {
   return (
-    <Router>
-      {/* Global Layout Wrapper */}        
+    <Router>       
         {/* Navigation */}
         <Navbar />
 

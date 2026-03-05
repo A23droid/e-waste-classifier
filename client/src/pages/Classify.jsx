@@ -1,4 +1,3 @@
-// Classify.jsx
 import { useState, useRef } from 'react';
 
 export default function Classify() {

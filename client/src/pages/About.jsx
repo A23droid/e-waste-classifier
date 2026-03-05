@@ -1,4 +1,3 @@
-// About.jsx
 export default function About() {
   const stats = [
     { value: '1M+', label: 'Classifications Processed' },

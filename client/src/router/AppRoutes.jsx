@@ -1,4 +1,3 @@
-// AppRoutes.jsx
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PageWrapper from '../components/layout/PageWrapper';
@@ -9,7 +8,7 @@ const Classify = lazy(() => import('../pages/Classify'));
 const About = lazy(() => import('../pages/About'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
-// Professional loading component
+// custam loader
 function PageLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
