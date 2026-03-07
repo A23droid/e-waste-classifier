@@ -7,6 +7,7 @@ const Home = lazy(() => import('../pages/Home'));
 const Classify = lazy(() => import('../pages/Classify'));
 const About = lazy(() => import('../pages/About'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+const Why = lazy(() => import('../pages/Why'));
 
 // custam loader
 function PageLoader() {
@@ -41,6 +42,14 @@ export default function AppRoutes() {
           element={
             <PageWrapper>
               <Classify />
+            </PageWrapper>
+          } 
+        />
+        <Route 
+          path="/why" 
+          element={
+            <PageWrapper>
+              <Why />
             </PageWrapper>
           } 
         />

@@ -8,7 +8,8 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/classify', label: 'Classify' },
-    { path: '/about', label: 'About' }
+    { path: '/about', label: 'About' },
+    { path: '/why', label: 'Why' }
   ];
 
   const isActive = (path) => location.pathname === path;

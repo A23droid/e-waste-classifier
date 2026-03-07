@@ -53,7 +53,7 @@ export default function Home() {
       <section className="pt-8 pb-16 md:pt-16 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            AI-Powered Waste Classification
+            AI-Powered E-Waste Classification
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Accurately classify waste materials using advanced machine learning. 
