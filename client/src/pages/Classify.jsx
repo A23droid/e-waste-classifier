@@ -36,23 +36,35 @@ export default function Classify() {
     }
   };
 
-  const classifyImage = () => {
+  const classifyImage = async () => {
     setIsClassifying(true);
     setResult(null);
 
-    // Simulate API call
-    setTimeout(() => {
-      const categories = [
-        { type: 'Recyclable Plastic', confidence: 94, category: 'Recyclable', recommendations: ['Rinse container before recycling', 'Remove any labels if possible', 'Check local recycling guidelines for plastic types'] },
-        { type: 'Organic Waste', confidence: 87, category: 'Organic', recommendations: ['Suitable for composting', 'Keep separate from other waste types', 'Consider home composting if available'] },
-        { type: 'Electronic Waste', confidence: 92, category: 'Hazardous', recommendations: ['Do not dispose in regular trash', 'Take to designated e-waste collection center', 'Check for retailer take-back programs'] },
-        { type: 'General Waste', confidence: 88, category: 'General', recommendations: ['Not recyclable or compostable', 'Dispose in general waste bin', 'Consider reducing usage of similar items'] }
-      ];
-      
-      const randomResult = categories[Math.floor(Math.random() * categories.length)];
-      setResult(randomResult);
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+      setResult({
+        type: data.prediction,
+        confidence: Math.round(data.confidence * 100),
+        category: "E-Waste",
+        recommendations: [data.disposal]
+      });
+
+    } catch (error) {
+      console.error("Error classifying image:", error);
+      alert("Failed to classify image. Please try again.");
+    } finally {
       setIsClassifying(false);
-    }, 1500);
+    }
   };
 
   const reset = () => {
