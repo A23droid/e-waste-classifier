@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 import torch
 import torch.nn as nn
@@ -57,36 +57,39 @@ disposal_info = {
 
 @app.route("/predict", methods = ["POST"])
 def predict():
-    if "image" not in request.files:
-        return{ "error": "No image uploaded"}, 400
-    
-    image_file = request.files["image"]
-    filename = image_file.filename
-    image = Image.open(image_file).convert("RGB")
-    image_tensor = transform(image)
-    image_tensor = image_tensor.unsqueeze(0)
+    try:
+        if "image" not in request.files:
+            return jsonify({"error": "No image uploaded"}), 400
+        
+        image_file = request.files["image"]
+        image = Image.open(image_file).convert("RGB")
+        image_tensor = transform(image)
+        image_tensor = image_tensor.unsqueeze(0)
 
-    #predicting
-    with torch.no_grad():
-        outputs = model(image_tensor)
-        probabilities = F.softmax(outputs,dim=1) # dim 1 means across class
-        confidence, predicted_class = torch.max(probabilities, 1)
+        #predicting
+        with torch.no_grad():
+            outputs = model(image_tensor)
+            probabilities = F.softmax(outputs,dim=1)
+            confidence, predicted_class = torch.max(probabilities, 1)
 
-    predicted_label = class_names[predicted_class.item()]
-    disposal_text = disposal_info[predicted_label]
+        predicted_label = class_names[predicted_class.item()]
+        disposal_text = disposal_info[predicted_label]
 
-    print("Predicted: ", predicted_label)
-    print("Confidence: ", confidence.item())
+        print("Predicted: ", predicted_label)
+        print("Confidence: ", confidence.item())
 
-    return{
-        "prediction": predicted_label,
-        "confidence": float(confidence.item()),
-        "disposal": disposal_text
-    }
+        return jsonify({
+            "prediction": predicted_label,
+            "confidence": float(confidence.item()),
+            "disposal": disposal_text
+        })
+    except Exception as e:
+        print("Error during prediction:", str(e))
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/")
 def home():
-    return "Ewaste classifier backend running"
+    return jsonify({"status": "Ewaste classifier backend running"})
 
 if __name__ == "__main__":
     app.run(debug=False)
