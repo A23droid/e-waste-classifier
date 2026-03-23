@@ -41,17 +41,68 @@ class_names = [
     "Washing Machine"
 ]
 
+#disposal info
 disposal_info = {
-    "Battery": "Dispose at a certified battery recycling or hazardous waste collection center.",
-    "Keyboard": "Take to an authorized e-waste recycling center.",
-    "Microwave": "Dispose through an authorized appliance or e-waste recycling facility.",
-    "Mobile": "Return to a manufacturer take-back program or certified e-waste recycler.",
-    "Mouse": "Take to an authorized e-waste recycling center.",
-    "PCB": "Handle through a specialized e-waste recycling facility.",
-    "Player": "Dispose through an authorized electronics recycling center.",
-    "Printer": "Take to an e-waste recycling center or manufacturer collection program.",
-    "Television": "Dispose through a certified e-waste recycling facility.",
-    "Washing Machine": "Use an authorized appliance recycling or e-waste collection service."
+    "Battery": [
+        "Do not dispose of batteries in regular household trash.",
+        "Store used batteries in a cool, dry place away from flammable materials.",
+        "Take batteries to certified battery recycling or hazardous waste collection centers.",
+        "Check for local battery collection drives or retailer take-back programs."
+    ],
+    "Keyboard": [
+        "Do not throw keyboards in general waste bins.",
+        "Check if the keyboard can be reused or donated.",
+        "Take it to an authorized e-waste recycling center.",
+        "Separate removable components if required by local recycling guidelines."
+    ],
+    "Microwave": [
+        "Do not dispose of microwaves in regular trash due to electronic components.",
+        "Ensure the appliance is unplugged and safe to transport.",
+        "Take it to an authorized appliance or e-waste recycling facility.",
+        "Contact local municipal services for large appliance disposal options."
+    ],
+    "Mobile": [
+        "Remove personal data by performing a factory reset.",
+        "Remove SIM and memory cards before disposal.",
+        "Return the phone through manufacturer or retailer take-back programs.",
+        "Take it to a certified e-waste recycling center."
+    ],
+    "Mouse": [
+        "Do not dispose of electronic accessories in regular trash.",
+        "Check if the mouse is still usable and can be donated.",
+        "Take it to an authorized e-waste recycling center.",
+        "Group with other small electronics for efficient recycling."
+    ],
+    "PCB": [
+        "Printed Circuit Boards contain hazardous materials—handle carefully.",
+        "Do not attempt to dismantle without proper safety equipment.",
+        "Dispose through specialized e-waste recycling facilities.",
+        "Ensure it is handled by certified recycling professionals."
+    ],
+    "Player": [
+        "Avoid disposing of electronic media players in general waste.",
+        "Check if the device can be reused or refurbished.",
+        "Take it to an authorized electronics recycling center.",
+        "Look for brand-specific recycling or exchange programs."
+    ],
+    "Printer": [
+        "Remove ink or toner cartridges before disposal.",
+        "Recycle cartridges separately if possible.",
+        "Take the printer to an e-waste recycling center.",
+        "Check manufacturer take-back or recycling programs."
+    ],
+    "Television": [
+        "Do not dispose of TVs in regular trash due to hazardous components.",
+        "Handle carefully to avoid screen damage and injury.",
+        "Take it to a certified e-waste recycling facility.",
+        "Use municipal pickup services for large electronics if available."
+    ],
+    "Washing Machine": [
+        "Disconnect water and power supply before disposal.",
+        "Check if the appliance can be repaired or reused.",
+        "Use authorized appliance recycling or scrap collection services.",
+        "Contact local authorities for bulk waste pickup if needed."
+    ]
 }
                       
 
@@ -92,4 +143,6 @@ def home():
     return jsonify({"status": "Ewaste classifier backend running"})
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    import os
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host="0.0.0.0", port=port, debug=False)
