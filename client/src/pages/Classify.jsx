@@ -46,7 +46,7 @@ export default function Classify() {
     formData.append("image", selectedFile);
 
     try {
-      const response = await fetch("https://e-waste-classifier-xwe6.onrender.com/predict", {
+      const response = await fetch("https://pratyush8575-e-waste-classifier.hf.space/predict", {
         method: "POST",
         body: formData
       });
