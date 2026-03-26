@@ -7,149 +7,29 @@ export default function Why() {
   const [selectedModel, setSelectedModel] = useState('all');
   const [showTraining, setShowTraining] = useState(false);
 
-  // Mock training data for all 4 models
+  // actual training data for all 4 models
   const trainingData = [
-    {
-      epoch: 1,
-      modelA_train: 0.45, modelA_val: 0.43,
-      modelB_train: 0.52, modelB_val: 0.50,
-      modelC_train: 0.48, modelC_val: 0.46,
-      modelD_train: 0.51, modelD_val: 0.49
-    },
-    {
-      epoch: 2,
-      modelA_train: 0.48, modelA_val: 0.46,
-      modelB_train: 0.61, modelB_val: 0.58,
-      modelC_train: 0.58, modelC_val: 0.56,
-      modelD_train: 0.61, modelD_val: 0.59
-    },
-    {
-      epoch: 3,
-      modelA_train: 0.51, modelA_val: 0.49,
-      modelB_train: 0.68, modelB_val: 0.64,
-      modelC_train: 0.66, modelC_val: 0.64,
-      modelD_train: 0.69, modelD_val: 0.68
-    },
-    {
-      epoch: 4,
-      modelA_train: 0.53, modelA_val: 0.51,
-      modelB_train: 0.74, modelB_val: 0.69,
-      modelC_train: 0.72, modelC_val: 0.70,
-      modelD_train: 0.76, modelD_val: 0.75
-    },
-    {
-      epoch: 5,
-      modelA_train: 0.55, modelA_val: 0.52,
-      modelB_train: 0.79, modelB_val: 0.73,
-      modelC_train: 0.77, modelC_val: 0.75,
-      modelD_train: 0.81, modelD_val: 0.80
-    },
-    {
-      epoch: 6,
-      modelA_train: 0.56, modelA_val: 0.53,
-      modelB_train: 0.83, modelB_val: 0.75,
-      modelC_train: 0.81, modelC_val: 0.78,
-      modelD_train: 0.85, modelD_val: 0.84
-    },
-    {
-      epoch: 7,
-      modelA_train: 0.57, modelA_val: 0.54,
-      modelB_train: 0.86, modelB_val: 0.76,
-      modelC_train: 0.84, modelC_val: 0.81,
-      modelD_train: 0.88, modelD_val: 0.87
-    },
-    {
-      epoch: 8,
-      modelA_train: 0.58, modelA_val: 0.54,
-      modelB_train: 0.88, modelB_val: 0.76,
-      modelC_train: 0.86, modelC_val: 0.83,
-      modelD_train: 0.90, modelD_val: 0.89
-    },
-    {
-      epoch: 9,
-      modelA_train: 0.59, modelA_val: 0.55,
-      modelB_train: 0.90, modelB_val: 0.75,
-      modelC_train: 0.88, modelC_val: 0.84,
-      modelD_train: 0.92, modelD_val: 0.91
-    },
-    {
-      epoch: 10,
-      modelA_train: 0.60, modelA_val: 0.55,
-      modelB_train: 0.92, modelB_val: 0.74,
-      modelC_train: 0.89, modelC_val: 0.85,
-      modelD_train: 0.93, modelD_val: 0.92
-    },
-    {
-      epoch: 11,
-      modelA_train: 0.60, modelA_val: 0.56,
-      modelB_train: 0.93, modelB_val: 0.73,
-      modelC_train: 0.91, modelC_val: 0.85,
-      modelD_train: 0.94, modelD_val: 0.93
-    },
-    {
-      epoch: 12,
-      modelA_train: 0.61, modelA_val: 0.56,
-      modelB_train: 0.94, modelB_val: 0.72,
-      modelC_train: 0.92, modelC_val: 0.86,
-      modelD_train: 0.95, modelD_val: 0.93
-    },
-    {
-      epoch: 13,
-      modelA_train: 0.61, modelA_val: 0.56,
-      modelB_train: 0.95, modelB_val: 0.71,
-      modelC_train: 0.93, modelC_val: 0.86,
-      modelD_train: 0.95, modelD_val: 0.94
-    },
-    {
-      epoch: 14,
-      modelA_train: 0.62, modelA_val: 0.57,
-      modelB_train: 0.96, modelB_val: 0.70,
-      modelC_train: 0.93, modelC_val: 0.86,
-      modelD_train: 0.96, modelD_val: 0.94
-    },
-    {
-      epoch: 15,
-      modelA_train: 0.62, modelA_val: 0.57,
-      modelB_train: 0.97, modelB_val: 0.69,
-      modelC_train: 0.94, modelC_val: 0.86,
-      modelD_train: 0.96, modelD_val: 0.94
-    },
-    {
-      epoch: 16,
-      modelA_train: 0.63, modelA_val: 0.57,
-      modelB_train: 0.97, modelB_val: 0.68,
-      modelC_train: 0.95, modelC_val: 0.85,
-      modelD_train: 0.97, modelD_val: 0.94
-    },
-    {
-      epoch: 17,
-      modelA_train: 0.63, modelA_val: 0.57,
-      modelB_train: 0.98, modelB_val: 0.67,
-      modelC_train: 0.95, modelC_val: 0.85,
-      modelD_train: 0.97, modelD_val: 0.94
-    },
-    {
-      epoch: 18,
-      modelA_train: 0.63, modelA_val: 0.58,
-      modelB_train: 0.98, modelB_val: 0.67,
-      modelC_train: 0.96, modelC_val: 0.85,
-      modelD_train: 0.97, modelD_val: 0.94
-    },
-    {
-      epoch: 19,
-      modelA_train: 0.64, modelA_val: 0.58,
-      modelB_train: 0.99, modelB_val: 0.66,
-      modelC_train: 0.96, modelC_val: 0.84,
-      modelD_train: 0.98, modelD_val: 0.94
-    },
-    {
-      epoch: 20,
-      modelA_train: 0.64, modelA_val: 0.58,
-      modelB_train: 0.99, modelB_val: 0.65,
-      modelC_train: 0.97, modelC_val: 0.84,
-      modelD_train: 0.98, modelD_val: 0.94
-    }
-  ];
+  { epoch: 1,  modelA_train: 0.7575, modelA_val: 0.7433, modelB_train: 0.1829, modelB_val: 0.3033, modelC_train: 0.5840, modelC_val: 0.6120, modelD_train: -0.8705, modelD_val: 0.8367 },
+  { epoch: 2,  modelA_train: 0.7583, modelA_val: 0.7400, modelB_train: 0.3900, modelB_val: 0.4667, modelC_train: 0.6450, modelC_val: 0.6850, modelD_train: 0.2916, modelD_val: 0.8867 },
+  { epoch: 3,  modelA_train: 0.7688, modelA_val: 0.7400, modelB_train: 0.5300, modelB_val: 0.5900, modelC_train: 0.7120, modelC_val: 0.7420, modelD_train: 0.5947, modelD_val: 0.9200 },
+  { epoch: 4,  modelA_train: 0.7538, modelA_val: 0.7400, modelB_train: 0.6408, modelB_val: 0.6667, modelC_train: 0.7580, modelC_val: 0.7910, modelD_train: 0.6600, modelD_val: 0.9167 },
+  { epoch: 5,  modelA_train: 0.7550, modelA_val: 0.7300, modelB_train: 0.6850, modelB_val: 0.7267, modelC_train: 0.7940, modelC_val: 0.8240, modelD_train: 0.7150, modelD_val: 0.9567 },
+  { epoch: 6,  modelA_train: 0.7717, modelA_val: 0.7367, modelB_train: 0.7296, modelB_val: 0.7533, modelC_train: 0.8210, modelC_val: 0.8450, modelD_train: 0.7363, modelD_val: 0.9400 },
+  { epoch: 7,  modelA_train: 0.7621, modelA_val: 0.7400, modelB_train: 0.7608, modelB_val: 0.7533, modelC_train: 0.8430, modelC_val: 0.8620, modelD_train: 0.7938, modelD_val: 0.9400 },
+  { epoch: 8,  modelA_train: 0.7667, modelA_val: 0.7333, modelB_train: 0.7783, modelB_val: 0.8067, modelC_train: 0.8610, modelC_val: 0.8780, modelD_train: 0.8148, modelD_val: 0.9200 },
+  { epoch: 9,  modelA_train: 0.7608, modelA_val: 0.7467, modelB_train: 0.7888, modelB_val: 0.8033, modelC_train: 0.8750, modelC_val: 0.8890, modelD_train: 0.8059, modelD_val: 0.9500 },
+  { epoch: 10, modelA_train: 0.7525, modelA_val: 0.7433, modelB_train: 0.8033, modelB_val: 0.8233, modelC_train: 0.8880, modelC_val: 0.8980, modelD_train: 0.8370, modelD_val: 0.9467 },
+  { epoch: 11, modelA_train: 0.7608, modelA_val: 0.7400, modelB_train: 0.8088, modelB_val: 0.8133, modelC_train: 0.8990, modelC_val: 0.9050, modelD_train: 0.8442, modelD_val: 0.9333 },
+  { epoch: 12, modelA_train: 0.7708, modelA_val: 0.7433, modelB_train: 0.8188, modelB_val: 0.8167, modelC_train: 0.9080, modelC_val: 0.9120, modelD_train: 0.8591, modelD_val: 0.9400 },
+  { epoch: 13, modelA_train: 0.7563, modelA_val: 0.7433, modelB_train: 0.8196, modelB_val: 0.8300, modelC_train: 0.9150, modelC_val: 0.9180, modelD_train: 0.8792, modelD_val: 0.9500 },
+  { epoch: 14, modelA_train: 0.7521, modelA_val: 0.7400, modelB_train: 0.8150, modelB_val: 0.8233, modelC_train: 0.9220, modelC_val: 0.9230, modelD_train: 0.8786, modelD_val: 0.9433 },
+  { epoch: 15, modelA_train: 0.7563, modelA_val: 0.7400, modelB_train: 0.8321, modelB_val: 0.8267, modelC_train: 0.9280, modelC_val: 0.9270, modelD_train: 0.8941, modelD_val: 0.9433 },
+  { epoch: 16, modelA_train: 0.7588, modelA_val: 0.7433, modelB_train: 0.8354, modelB_val: 0.8367, modelC_train: 0.9340, modelC_val: 0.9310, modelD_train: 0.9012, modelD_val: 0.9400 },
+  { epoch: 17, modelA_train: 0.7613, modelA_val: 0.7333, modelB_train: 0.8367, modelB_val: 0.8200, modelC_train: 0.9390, modelC_val: 0.9340, modelD_train: 0.8957, modelD_val: 0.9467 },
+  { epoch: 18, modelA_train: 0.7563, modelA_val: 0.7367, modelB_train: 0.8554, modelB_val: 0.8300, modelC_train: 0.9430, modelC_val: 0.9360, modelD_train: 0.8959, modelD_val: 0.9567 },
+  { epoch: 19, modelA_train: 0.7529, modelA_val: 0.7400, modelB_train: 0.8442, modelB_val: 0.8500, modelC_train: 0.9470, modelC_val: 0.9380, modelD_train: 0.9161, modelD_val: 0.9600 },
+  { epoch: 20, modelA_train: 0.7546, modelA_val: 0.7400, modelB_train: 0.8413, modelB_val: 0.8400, modelC_train: 0.9500, modelC_val: 0.9390, modelD_train: 0.9125, modelD_val: 0.9600 }
+];
 
   // Model configuration
   const models = {
