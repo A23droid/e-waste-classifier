@@ -9,7 +9,7 @@ export default function Why() {
 
   // actual training data for all 4 models
   const trainingData = [
-  { epoch: 1,  modelA_train: 0.7575, modelA_val: 0.7433, modelB_train: 0.1829, modelB_val: 0.3033, modelC_train: 0.5840, modelC_val: 0.6120, modelD_train: -0.8705, modelD_val: 0.8367 },
+  { epoch: 1,  modelA_train: 0.7575, modelA_val: 0.7433, modelB_train: 0.1829, modelB_val: 0.3033, modelC_train: 0.5840, modelC_val: 0.6120, modelD_train: 0.0, modelD_val: 0.8367 },
   { epoch: 2,  modelA_train: 0.7583, modelA_val: 0.7400, modelB_train: 0.3900, modelB_val: 0.4667, modelC_train: 0.6450, modelC_val: 0.6850, modelD_train: 0.2916, modelD_val: 0.8867 },
   { epoch: 3,  modelA_train: 0.7688, modelA_val: 0.7400, modelB_train: 0.5300, modelB_val: 0.5900, modelC_train: 0.7120, modelC_val: 0.7420, modelD_train: 0.5947, modelD_val: 0.9200 },
   { epoch: 4,  modelA_train: 0.7538, modelA_val: 0.7400, modelB_train: 0.6408, modelB_val: 0.6667, modelC_train: 0.7580, modelC_val: 0.7910, modelD_train: 0.6600, modelD_val: 0.9167 },
