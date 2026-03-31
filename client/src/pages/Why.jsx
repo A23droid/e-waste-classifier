@@ -33,44 +33,46 @@ export default function Why() {
 
   // Model configuration
   const models = {
-    modelA: {
-      name: 'Model A',
-      fullName: 'Simple CNN',
-      color: '#ef4444',
-      description: 'Basic 2-layer CNN architecture',
-      finalVal: 0.58,
-      finalTrain: 0.64,
-      status: 'Underfitting'
-    },
-    modelB: {
-      name: 'Model B',
-      fullName: 'Deep CNN',
-      color: '#f97316',
-      description: '6-layer CNN without regularization',
-      finalVal: 0.65,
-      finalTrain: 0.99,
-      status: 'Severe Overfitting',
-      overfittingEpoch: 8
-    },
-    modelC: {
-      name: 'Model C',
-      fullName: 'ResNet-18',
-      color: '#3b82f6',
-      description: 'ResNet with 0.3 dropout',
-      finalVal: 0.84,
-      finalTrain: 0.97,
-      status: 'Moderate Overfitting'
-    },
-    modelD: {
-      name: 'Model D',
-      fullName: 'EfficientNet-B0',
-      color: '#10b981',
-      description: 'EfficientNet with data augmentation',
-      finalVal: 0.94,
-      finalTrain: 0.98,
-      status: 'Optimal (Selected)'
-    }
-  };
+  modelA: {
+    name: 'Model A',
+    fullName: 'CNN',
+    color: '#ef4444',
+    description: 'Baseline convolutional neural network trained from scratch; limited feature learning capacity.',
+    finalVal: 0.74,
+    finalTrain: 0.754,
+    status: 'Underfitting'
+  },
+
+  modelB: {
+    name: 'Model B',
+    fullName: 'CNN + TL (ResNet)',
+    color: '#f97316',
+    description: 'Transfer learning using a pretrained ResNet backbone; improves feature extraction and convergence.',
+    finalVal: 0.84,
+    finalTrain: 0.84125,
+    status: 'Well Generalized'
+  },
+
+  modelC: {
+    name: 'Model C',
+    fullName: 'Vision Transformer (ViT)',
+    color: '#3b82f6',
+    description: 'Transformer-based architecture capturing global dependencies; achieves high accuracy and stable performance.',
+    finalVal: 0.939,
+    finalTrain: 0.95,
+    status: 'High Performance'
+  },
+
+  modelD: {
+    name: 'Model D',
+    fullName: 'YOLO',
+    color: '#10b981',
+    description: 'Real-time detection-based architecture adapted for classification; delivers highest accuracy and efficiency.',
+    finalVal: 0.96,
+    finalTrain: 0.91,
+    status: 'Best Performing (Selected)'
+  }
+};
 
   // Custom tooltip
   const CustomTooltip = ({ active, payload }) => {
