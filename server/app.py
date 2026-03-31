@@ -1,31 +1,31 @@
 from flask import Flask, request, jsonify
-
+from ultralytics import YOLO
 import torch
 import torch.nn as nn
 import torch
 from PIL import Image
-from torchvision import transforms
-from torchvision import models
-import torch.nn.functional as F
+
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-transform = transforms.Compose([
-    transforms.Resize((224,224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean = [0.485,0.456,0.406], std = [0.229,0.224,0.225])
-])
+# transform = transforms.Compose([
+#     transforms.Resize((224,224)),
+#     transforms.ToTensor(),
+#     transforms.Normalize(mean = [0.485,0.456,0.406], std = [0.229,0.224,0.225])
+# ])
 
-#create model architecure
-model = models.resnet18(pretrained=False)
-num_features = model.fc.in_features
-model.fc = nn.Linear(num_features,10)
+# #create model architecure
+# model = models.resnet18(pretrained=False)
+# num_features = model.fc.in_features
+# model.fc = nn.Linear(num_features,10)
 
-#load model
-model.load_state_dict(torch.load("model/ewaste_model_transfer_learning.pth", map_location = "cpu"))
-model.eval()
+# #load model
+# model.load_state_dict(torch.load("model/ewaste_model_transfer_learning.pth", map_location = "cpu"))
+# model.eval()
+
+model = YOLO("model/yolo/best.pt")
 
 #declare class names
 class_names = [
@@ -114,24 +114,43 @@ def predict():
         
         image_file = request.files["image"]
         image = Image.open(image_file).convert("RGB")
-        image_tensor = transform(image)
-        image_tensor = image_tensor.unsqueeze(0)
+        # image_tensor = transform(image)
+        # image_tensor = image_tensor.unsqueeze(0)
 
-        #predicting
-        with torch.no_grad():
-            outputs = model(image_tensor)
-            probabilities = F.softmax(outputs,dim=1)
-            confidence, predicted_class = torch.max(probabilities, 1)
+        # #predicting
+        # with torch.no_grad():
+        #     outputs = model(image_tensor)
+        #     probabilities = F.softmax(outputs,dim=1)
+        #     confidence, predicted_class = torch.max(probabilities, 1)
 
-        predicted_label = class_names[predicted_class.item()]
-        disposal_text = disposal_info[predicted_label]
+        # predicted_label = class_names[predicted_class.item()]
+        # disposal_text = disposal_info[predicted_label]
+
+        results = model(image)
+        result = results[0] 
+
+        if hasattr(result, 'probs') and result.probs is not None:
+            class_index = result.probs.top1
+            confidence_value = float(result.probs.top1conf)
+        else:
+            if len(result.boxes)==0 :
+                return jsonify({'error': 'No e-waste detected in image'}),400
+            class_index = int(result.boxes[0].cls[0].item())
+            confidence_value = float(result.boxes[0].conf[0].item())
+
+        if confidence_value < 0.50:
+            return jsonify({"error": "Image does not appear to be recognized e-waste"}), 400
+
+
+        predicted_label = class_names[class_index]
+        disposal_text =  disposal_info[predicted_label]
 
         print("Predicted: ", predicted_label)
-        print("Confidence: ", confidence.item())
+        print("Confidence: ", confidence_value)
 
         return jsonify({
             "prediction": predicted_label,
-            "confidence": float(confidence.item()),
+            "confidence": float(confidence_value),
             "disposal": disposal_text
         })
     except Exception as e:
